@@ -1,50 +1,288 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>Lijojun</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: #f4f4f4;
-        }
-        h1 {
-            text-align: center;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lijojun的个人博客</title>
+
+<style>
+:root{
+    --bg:#f9f9f9;
+    --text:#333;
+    --primary:#3b82f6;
+    --card-radius:12px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
+    background: var(--bg);
+    color: var(--text);
+    line-height:1.6;
+}
+
+/* ===== 背景图 ===== */
+.hero{
+    background: url('bg.jpg') center/cover no-repeat;
+    height:280px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:32px;
+    background:rgba(0,0,0,0.4);
+    padding:10px 20px;
+    border-radius:8px;
+}
+
+/* ===== Header ===== */
+header{
+    background:white;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-weight:bold;
+    font-size:18px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+nav a{
+    text-decoration:none;
+    color:var(--text);
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:var(--primary);
+}
+
+/* 汉堡菜单 */
+.menu-toggle{
+    display:none;
+    font-size:22px;
+    cursor:pointer;
+}
+
+/* ===== 主体布局 ===== */
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:30px;
+}
+
+/* ===== 文章卡片 ===== */
+.posts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:var(--card-radius);
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card img{
+    width:100%;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.card h3{
+    margin-bottom:8px;
+}
+
+.date{
+    font-size:14px;
+    color:#888;
+    margin-bottom:10px;
+}
+
+.read-more{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* ===== 侧边栏 ===== */
+.sidebar .widget{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:var(--card-radius);
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+}
+
+.avatar{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:10px;
+}
+
+.tags span{
+    display:inline-block;
+    background:#e5e7eb;
+    padding:5px 10px;
+    margin:5px 5px 0 0;
+    border-radius:20px;
+    font-size:12px;
+}
+
+/* ===== Footer ===== */
+footer{
+    text-align:center;
+    padding:20px;
+    background:white;
+    margin-top:40px;
+    font-size:14px;
+}
+
+/* ===== 响应式 ===== */
+@media(max-width:900px){
+    .container{
+        grid-template-columns:1fr;
+    }
+    .posts{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:768px){
+    nav ul{
+        display:none;
+        flex-direction:column;
+        background:white;
+        position:absolute;
+        right:20px;
+        top:60px;
+        padding:15px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.1);
+        border-radius:8px;
+    }
+    nav ul.active{
+        display:flex;
+    }
+    .menu-toggle{
+        display:block;
+    }
+}
+</style>
 </head>
+
 <body>
 
-<h1>欢迎来到我的主页</h1>
+<header>
+<div class="logo">lijojun的个人博客</div>
+
+<nav>
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<ul id="menu">
+<li><a href="#">首页</a></li>
+<li><a href="#">文章归档</a></li>
+<li><a href="#">关于我</a></li>
+<li><a href="#">🔍</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="hero">
+<h1>记录思考与生活</h1>
+</div>
+
+<div class="container">
+
+<!-- 文章区 -->
+<div class="posts">
 
 <div class="card">
-    <h2>关于我</h2>
-    <p>这里写你的介绍内容。</p>
+<img src="thumb1.jpg">
+<h3>第一篇文章标题</h3>
+<div class="date">2025年2月20日</div>
+<p>这是文章摘要内容，简单介绍一下这篇文章讲什么...</p>
+<a href="#" class="read-more">阅读更多 →</a>
 </div>
 
 <div class="card">
-    <h2>我的图片</h2>
-    <img src="photo.jpg" alt="我的照片">
+<img src="thumb2.jpg">
+<h3>第二篇文章标题</h3>
+<div class="date">2025年2月18日</div>
+<p>这是文章摘要内容，简单介绍一下这篇文章讲什么...</p>
+<a href="#" class="read-more">阅读更多 →</a>
 </div>
 
-<div class="card">
-    <h2>联系方式</h2>
-    <p>Email: your@email.com</p>
 </div>
+
+<!-- 侧边栏 -->
+<div class="sidebar">
+
+<div class="widget">
+<img src="avatar.jpg" class="avatar">
+<h3>lijojun</h3>
+<p>记录技术、思考与生活。</p>
+</div>
+
+<div class="widget">
+<h3>热门文章</h3>
+<ul>
+<li><a href="#">AI 与未来</a></li>
+<li><a href="#">个人效率系统</a></li>
+<li><a href="#">经济周期观察</a></li>
+</ul>
+</div>
+
+<div class="widget">
+<h3>标签</h3>
+<div class="tags">
+<span>AI</span>
+<span>经济</span>
+<span>技术</span>
+<span>生活</span>
+</div>
+</div>
+
+</div>
+</div>
+
+<footer>
+© 2025 lijojun的个人博客 · 保留所有权利
+</footer>
+
+<script>
+function toggleMenu(){
+    document.getElementById("menu").classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
