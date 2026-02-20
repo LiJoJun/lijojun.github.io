@@ -1,65 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>简易缓存网页</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-size: 16px;
-    }
-    body {
-      max-width: 600px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-    textarea {
-      width: 100%;
-      height: 200px;
-      padding: 10px;
-      margin: 10px 0;
-    }
-    button {
-      padding: 8px 16px;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Lijojun</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
 
-  <h2>简易本地缓存网页</h2>
-  <p>下面内容会自动保存在浏览器里</p>
+<h1>欢迎来到我的主页</h1>
 
-  <textarea id="content" placeholder="在这里输入内容..."></textarea>
-  <br>
-  <button onclick="saveData()">保存到本地缓存</button>
-  <button onclick="clearData()">清空缓存</button>
+<div class="card">
+    <h2>关于我</h2>
+    <p>这里写你的介绍内容。</p>
+</div>
 
-  <script>
-    // 读取本地存储
-    function loadData() {
-      let data = localStorage.getItem('myCache');
-      if (data) {
-        document.getElementById('content').value = data;
-      }
-    }
+<div class="card">
+    <h2>我的图片</h2>
+    <img src="photo.jpg" alt="我的照片">
+</div>
 
-    // 保存到本地存储
-    function saveData() {
-      let text = document.getElementById('content').value;
-      localStorage.setItem('myCache', text);
-      alert('已保存到本地缓存');
-    }
+<div class="card">
+    <h2>联系方式</h2>
+    <p>Email: your@email.com</p>
+</div>
 
-    // 清空
-    function clearData() {
-      localStorage.removeItem('myCache');
-      document.getElementById('content').value = '';
-      alert('已清空');
-    }
-
-    // 页面一打开就加载
-    window.onload = loadData;
-  </script>
 </body>
 </html>
